@@ -17,7 +17,7 @@ export default async function get(req, res) {
           return res.json(err)
         } else {
           const tracked = data.items.filter(
-            (item) => item.event === 'delivered'
+            (item) => item.message.headers.subject === 'Renegociação'
           )
           return res.json(tracked)
         }

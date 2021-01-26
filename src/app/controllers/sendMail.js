@@ -1,18 +1,20 @@
 import nodemailer from 'nodemailer'
 import nodemailerMailgun from 'nodemailer-mailgun-transport'
 
-import mailConfig from '../config/mailConfig'
+import mailConfig from '../../config/mailConfig'
 
 export default async function post(req, res) {
-  const { to, subject, text } = req.body
+  const { to, subject } = req.body
 
   try {
     const mailData = {
       from: mailConfig.default.from,
       to,
       subject,
-      text,
-      html: '<h1><Testando o HTML </h1>',
+      template: 'template.test',
+      'v:title': 'Direto Tech',
+      'v:body': 'Body da porra do template',
+
       'o:tracking': 'True',
       'o:tracking-clicks': 'htmlonly',
     }
